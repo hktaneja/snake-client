@@ -9,11 +9,20 @@ const connect = function () {
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
+
+  //Handle connection established event
+  conn.on('connect', () => {
+    console.log("Successfully connected to game server");
+    // Sending the message to the server
+    const message = 'Name: HKT';
+    conn.write(message); 
+    //conn.write("Name:HKT");   
+  });
+
   // Handle incoming data
   conn.on('data', (data) => {
   const message = data.toString();
-  console.log('Received:', message);
-  // Additional logic for processing the received data
+  console.log('Received:', message);  
 });
   return conn;
 };

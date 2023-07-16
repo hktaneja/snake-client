@@ -13,10 +13,16 @@ const connect = function () {
   //Handle connection established event
   conn.on('connect', () => {
     console.log("Successfully connected to game server");
+    console.log('First connect callback');
     // Sending the message to the server
     const message = 'Name: HKT';
-    conn.write(message); 
-    //conn.write("Name:HKT");   
+    conn.write(message);     
+  });
+  conn.on('connect', () => {
+    console.log('Second connect callback');
+    // Sending the message to the server
+    //const message = 'Move: up';
+    //conn.write(message);     
   });
 
   // Handle incoming data

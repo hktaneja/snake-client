@@ -1,8 +1,9 @@
 const net = require("net");
-const { IP, PORT } = require("./constants");
+const { IP, PORT, INITIALS} = require("./constants");
 
 // establishes a connection with the game server
 const connect = function() {
+  // Create a network connection with the specified IP and PORT
   const conn = net.createConnection({
     host: IP,// IP address here,
     port: PORT// PORT number here,
@@ -16,22 +17,17 @@ const connect = function() {
     console.log("Successfully connected to game server");
     console.log('First connect callback');
     // Sending the message to the server
-    const message = 'Name: HKT';
-    conn.write(message);
+    conn.write(INITIALS);
   });
   conn.on('connect', () => {
     console.log('Second connect callback');
-    // Sending the message to the server
-    //const message = 'Move: up';
-    //conn.write(message);
   });
-
   // Handle incoming data
   conn.on('data', (data) => {
     const message = data.toString();
     console.log('Received:', message);
   });
-  return conn;
+  return conn; //// Return the network connection object
 };
 
 module.exports = {connect};

@@ -2,7 +2,6 @@ const { MOVE_UP_KEY, MOVE_LEFT_KEY, MOVE_DOWN_KEY, MOVE_RIGHT_KEY, MESSAGES, CTR
 // Stores the active TCP connection object.
 let connection;
 // setup interface to handle user input from stdin
-
 const setupInput = (conn) => {
   connection = conn;
   const stdin = process.stdin;
@@ -13,12 +12,10 @@ const setupInput = (conn) => {
   stdin.on("data", handleUserInput);
   return stdin;
 };
-
-
-// this function check for the ctrl + c input and terminate the game.
+// this function check for the input data from the keyboard.
 const handleUserInput = (data) => {
   if (data === CTRL_C) {
-    // Check for Ctrl + C input (ASCII code: \u0003)
+    // Check for Ctrl + C input and terminate the game
     console.log('Terminating the game...');
     process.exit();
   }
@@ -37,10 +34,7 @@ const handleUserInput = (data) => {
   if (MESSAGES[data]) {
     connection.write(MESSAGES[data]);
   }
-
 };
-
-
 // Register handleUserInput as the "data" callback handler for stdin
 process.stdin.on('data', handleUserInput);
 

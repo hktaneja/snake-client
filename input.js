@@ -18,6 +18,8 @@ const MOVE_LEFT_KEY = 'a';
 const MOVE_DOWN_KEY = 's';
 const MOVE_RIGHT_KEY = 'd';
 
+const MESSAGE = 'Say: Go Away';
+
 // this function check for the ctrl + c input and terminate the game.
 const handleUserInput = (data) => {
   if (data === '\u0003') {
@@ -37,6 +39,8 @@ const handleUserInput = (data) => {
   if (data === MOVE_RIGHT_KEY) {
     connection.write('Move: right');
   }
+  connection.write(MESSAGE);
+
 };
 
 

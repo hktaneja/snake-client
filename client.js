@@ -8,19 +8,14 @@ const connect = function() {
     host: IP,// IP address here,
     port: PORT// PORT number here,
   });
-
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
   //Handle connection established event
   conn.on('connect', () => {
     console.log("Successfully connected to game server");
-    console.log('First connect callback');
     // Sending the message to the server
     conn.write(INITIALS);
-  });
-  conn.on('connect', () => {
-    console.log('Second connect callback');
   });
   // Handle incoming data
   conn.on('data', (data) => {
